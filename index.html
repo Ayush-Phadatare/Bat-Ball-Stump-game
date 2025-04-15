@@ -54,21 +54,22 @@
       return computr_choice;
     }
 
-    function result(computer_choice, usermove) {
-      if (usermove === "Bat") {
-        if (computer_choice === 'Ball') return 'You Win!';
-        else if (computer_choice === 'Stump') return 'Computer Wins!';
-        else return 'It\'s a Tie!';
-      } else if (usermove === "Ball") {
-        if (computer_choice === 'Stump') return 'You Win!';
-        else if (computer_choice === 'Bat') return 'Computer Wins!';
-        else return 'It\'s a Tie!';
-      } else {
-        if (computer_choice === 'Bat') return 'You Win!';
-        else if (computer_choice === 'Ball') return 'Computer Wins!';
-        else return 'It\'s a Tie!';
-      }
-    }
+   function result(computer_choice, usermove) {
+  if (usermove === computer_choice) {
+    return "🤝 It's a Tie!";
+  }
+
+  if (
+    (usermove === "Bat" && computer_choice === "Ball") ||
+    (usermove === "Ball" && computer_choice === "Stump") ||
+    (usermove === "Stump" && computer_choice === "Bat")
+  ) {
+    return "🎉 You Win!";
+  } else {
+    return "💻 Computer Wins!";
+  }
+}
+
 
     // Show result in modal
     function showModal(result) {
