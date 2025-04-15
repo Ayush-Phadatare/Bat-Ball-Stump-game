@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bat Ball Stump Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Bat Ball Stump Game</h1>
+
+    <div class="game">
+      <button onclick="
+        let usermove = 'Bat';
+        let computer_choice = c_choice();
+        let finalresult = result(computer_choice, usermove);
+        showModal(finalresult);
+      ">Bat</button>
+
+      <button onclick="
+        usermove = 'Ball';
+        computer_choice = c_choice();
+        finalresult = result(computer_choice, usermove);
+        showModal(finalresult);
+      ">Ball</button>
+
+      <button onclick="
+        usermove = 'Stump';
+        computer_choice = c_choice();
+        finalresult = result(computer_choice, usermove);
+        showModal(finalresult);
+      ">Stump</button>
+    </div>
+  </div>
+
+  <!-- Custom Modal Popup -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <p id="resultText">Result goes here...</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function c_choice() {
+      let computr_choice = '';
+      let randomNumber = Math.floor(Math.random() * 3);
+      if (randomNumber === 0) computr_choice = 'Bat';
+      else if (randomNumber === 1) computr_choice = 'Ball';
+      else computr_choice = 'Stump';
+      return computr_choice;
+    }
+
+    function result(computer_choice, usermove) {
+      if (usermove === "Bat") {
+        if (computer_choice === 'Ball') return 'You Win!';
+        else if (computer_choice === 'Stump') return 'Computer Wins!';
+        else return 'It\'s a Tie!';
+      } else if (usermove === "Ball") {
+        if (computer_choice === 'Stump') return 'You Win!';
+        else if (computer_choice === 'Bat') return 'Computer Wins!';
+        else return 'It\'s a Tie!';
+      } else {
+        if (computer_choice === 'Bat') return 'You Win!';
+        else if (computer_choice === 'Ball') return 'Computer Wins!';
+        else return 'It\'s a Tie!';
+      }
+    }
+
+    // Show result in modal
+    function showModal(result) {
+      document.getElementById('resultText').textContent = result;
+      document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('resultModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
